@@ -49,6 +49,28 @@ app.get("/applications", async (req, res) => {
     res.status(404).send("Generic Error");
   }
 });
+app.post("/applications", async function (req, res) {
+  const data = req.body;
+  try {
+    let newApplication = new model.Application({
+      name: data.name,
+      phone: data.phone,
+      email: data.email,
+      petId: data.petId,
+    });
+    console.log(newApplication);
+    let error = newApplication.validateSync();
+    if (error) {
+      res.status(400).json(newApplication);
+      return;
+    }
+    await newApplication.save();
+    console.log("hi");
+    res.status(201).json(newApplication);
+  } catch (error) {
+    res.status(404).send("Generic Error");
+  }
+});
 
 app.listen(PORT, () => {
   console.log(`Server running: http://localhost:${PORT}`);
