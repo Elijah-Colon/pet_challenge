@@ -3,6 +3,7 @@ const URL = "http://localhost:8080";
 Vue.createApp({
     data() {
       return {
+        page:1,
         pets: "",
         locate:"/pets",
         fullPage:`${URL}`
@@ -14,13 +15,15 @@ Vue.createApp({
         let data = await response.json();
         this.pets = data 
       },
-      changePage: function () {
-        if (this.locate == '/pets'){
-        this.locate = '/applications'
+      changePage: function (page) {
+        if ( 1 === page){
+        this.page = 1
+        this.locate = '/pets'
         this.fullPage = `${URL}` + this.locate
         console.log(this.fullPage)
       }else{
-        this.locate = "/pets"
+        this.page = 2
+        this.locate = '/applications'
         this.fullPage = `${URL}` + this.locate
         console.log(this.fullPage)
       }

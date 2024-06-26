@@ -10,11 +10,16 @@
 <body>
     <div id="app">
         <h1>ADOPT A PET</h1>
-        <div v-if="locate == /pets">
-            <button @click="changePage()"> TRY IT</button>
+        <!-- page 1 pets -->
+        <div v-if="page === 1">
+            <div>YOU ARE IN PETS</div>
+            <button @click="changePage(2)"> APPLY</button>
         </div>
-        <div v-if="locate == /applications">
-            <div>HIIIIII</div>
+
+        <!-- page 2 applications -->
+        <div v-if="page === 2">
+            <div>YOU ARE IN APPlications</div>
+            <button @click="changePage(1)"> LOOK AT PETS </button>
         </div>
 
 
