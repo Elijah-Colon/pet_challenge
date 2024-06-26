@@ -1,14 +1,23 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
     <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
-    <link rel="stylesheet" href="style.css" />
     <title>Document</title>
-  </head>
-  <body>
-    <div id="miau"></div>
+</head>
+<body>
+    <div id="app">
+        <h1>ADOPT A PET</h1>
+        <div v-if="locate == /pets">
+            <button @click="changepage()"> TRY IT</button>
+        </div>
+        <div v-if="locate == /applications">
+            <div>HIIIIII</div>
+        </div>
+
+    </div>
     <script src="app.js"></script>
-  </body>
+</body>
 </html>
