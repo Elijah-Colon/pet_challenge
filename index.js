@@ -41,6 +41,22 @@ app.post("/pets", async (req, res) => {
     res.status(400).send("Generic Error");
   }
 });
+
+app.delete("/pets/:id", async (req, res) => {
+  try {
+    let isDeleted = await model.Pet.findByIdAndDelete({
+      _id: req.params.id,
+    });
+    if (!isDeleted) {
+      res.status(404).send("could not find pet");
+      return;
+    }
+    res.status(204).send("pet deleted");
+  } catch (error) {
+    response.status(400).send("Generic error");
+  }
+});
+
 app.get("/applications", async (req, res) => {
   try {
     const applications = await model.Application.find();
@@ -69,6 +85,25 @@ app.post("/applications", async function (req, res) {
     res.status(201).json(newApplication);
   } catch (error) {
     res.status(404).send("Generic Error");
+  }
+});
+
+app.delete("/applications/:id", async (req, res) => {
+  try {
+    console.log("hi1");
+    let isDeleted = await model.Application.findByIdAndDelete({
+      _id: req.params.id,
+    });
+    console.log("hi2");
+    if (!isDeleted) {
+      res.status(404).send("Could not find Application");
+      return;
+    }
+    console.log("hi3");
+    res.status(204).send("Application deleted");
+    console.log("hi4");
+  } catch (error) {
+    res.status(400).send("Generic Error");
   }
 });
 
